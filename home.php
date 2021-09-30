@@ -1,7 +1,7 @@
 <?php
- include 'conn.php';
 session_start();
 if(isset($_SESSION['id']) && ($_SESSION['id']!='')){
+
 }else{
   header('location:login.php');
   die();
