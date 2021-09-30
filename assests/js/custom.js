@@ -82,22 +82,28 @@ jQuery(document).ready(function() {
             jQuery('#phone_error').css("color", "red");
             phone_error = false;
             return false;
-        }else if (isNaN(phone)) {
+        } else {
+            jQuery('#phone_error').hide();
+        }
+        if (isNaN(phone)) {
             jQuery('#phone_error').show();
             jQuery('#phone_error').html("Phone Number Must Be Numeric Value");
             jQuery('#phone_error').css("color", "red");
             phone_error = false;
             return false;
-        } 
-        else if (phone.length != 10) {
+        } else {
+            jQuery('#phone_error').hide();
+        }
+        if (phone.length != 10) {
             jQuery('#phone_error').show();
             jQuery('#phone_error').html("Phone Number Must Be 10 Digit");
             jQuery('#phone_error').css("color", "red");
             phone_error = false;
             return false;
-        }  else {
+        } else {
             jQuery('#phone_error').hide();
         }
+
     }
     jQuery('#password').keyup(function() {
         passValidation();
@@ -107,7 +113,7 @@ jQuery(document).ready(function() {
         var pass = jQuery('#password').val();
         if (pass.length == '') {
             jQuery('#pass_error').show();
-            jQuery('#pass_error').html("Password required");
+            jQuery('#pass_error').html("Password Required");
             jQuery('#pass_error').css("color", "red");
             pass_error = false;
             return false;
@@ -136,7 +142,7 @@ jQuery(document).ready(function() {
             return false;
         } else if (pass != cpass) {
             jQuery('#cpass_error').show();
-            jQuery('#cpass_error').html("Password Did Not Match");
+            jQuery('#cpass_error').html("Password Not Match");
             jQuery('#cpass_error').css("color", "red");
             cpass_error = false;
             return false;
@@ -155,7 +161,7 @@ jQuery(document).ready(function() {
             jQuery('#web_error').html("Url Required");
             jQuery('#web_error').css("color", "red");
             web_error = false;
-            return false
+            return false;
         } else {
             jQuery('#web_error').hide();
         }
@@ -171,7 +177,7 @@ jQuery(document).ready(function() {
             jQuery('#address_error').html("Address Required");
             jQuery('#address_error').css("color", "red");
             address_error = false;
-            return false
+            return false;
         } else {
             jQuery('#address_error').hide();
         }
@@ -193,9 +199,8 @@ jQuery(document).ready(function() {
         cpassValidation();
         webValidation();
         addValidation();
-        if ((first_error == true) && (last_error == true) && (email_error == true) && (phone_errorr == true) && (pass_error == true) && (cpass_error == true) && (web_error == true) && (address_error == true))
-         {
-               return true;
+        if ((first_error == true) && (last_error == true) && (email_error == true) && (phone_error == true) && (pass_error == true) && (cpass_error == true) && (web_error == true) && (address_error == true)) {
+            return true;
         } else {
             return false;
         }

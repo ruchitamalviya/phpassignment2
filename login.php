@@ -13,7 +13,7 @@ if (isset($_POST['email']) && isset($_POST['password']))
         $emailpass = mysqli_fetch_assoc($query);
         $dbpass = $emailpass['password'];
         $_SESSION['id'] = $emailpass['id'];
-        $_SESSION['userlogin']='yes';
+        //$_SESSION['USER_LOGIN']='yes';
         $_SESSION['fname'] = $emailpass['fname'];
 
         $passdecode = password_verify($password, $dbpass);
@@ -44,7 +44,6 @@ if (isset($_POST['email']) && isset($_POST['password']))
 
 ?>
 
-
 <!DOCTYPE html>
 <html>
 
@@ -66,15 +65,16 @@ if (isset($_POST['email']) && isset($_POST['password']))
 			<div class="col-xs-12 col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-4">
 				<div class="panel panel-default">
 					<div class="panel-heading">
-					<h3 class="panel-title">Login Form</h3>
-					<?php
-					if(isset($_SESSION['msg'])){
+						<h3 class="panel-title">Login Form</h3>
+						<?php
+
+						if(isset($_SESSION['msg'])){
 						echo $_SESSION['msg'];
 						unset($_SESSION['msg']);
-					}
+						}
 
-					?>
-					 </div>
+						?>
+					</div>
 					<div class="panel-body">
 						<form role="form" method="post">
 							<div class="form-group">

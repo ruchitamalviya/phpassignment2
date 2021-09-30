@@ -35,7 +35,7 @@ if (isset($_POST['submit']))
             	$_SESSION['msg']= '<div class="alert alert-success" role="alert">
 						You Are Successfully Register!
 						</div>';
-       					header("Location:login.php");
+       			header("Location:login.php");
 
             }
             else
