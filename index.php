@@ -17,11 +17,10 @@ if (isset($_POST['submit']))
     $emailcount = mysqli_num_rows($query);
     if ($emailcount > 0)
     {
-    	
         $msg = '<div class="alert alert-success" role="alert">
 				Your Email is Already Exist!
 				</div>';
-	 }
+	}
     else
     {
         if ($password == $cpassword)
@@ -35,7 +34,7 @@ if (isset($_POST['submit']))
             	$_SESSION['msg']= '<div class="alert alert-success" role="alert">
 						You Are Successfully Register!
 						</div>';
-       					header("Location:login.php");
+       			header("Location:login.php");
 
             }
             else
@@ -56,9 +55,8 @@ if (isset($_POST['submit']))
 
 ?>
 
-	<!DOCTYPE html>
-	<html>
-
+<!DOCTYPE html>
+<html>
 	<head>
 		<meta charset="utf-8">
 		<title></title>
@@ -70,7 +68,8 @@ if (isset($_POST['submit']))
 		<!-- Latest compiled JavaScript -->
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 		<script type="text/javascript" src="assests/js/jquery-3.6.0.min.js"></script>
-		<link rel="stylesheet" type="text/css" href="assests/css/style.css"> </head>
+		<link rel="stylesheet" type="text/css" href="assests/css/style.css">
+	</head>
 
 	<body>
 		<div class="container">
@@ -137,5 +136,4 @@ if (isset($_POST['submit']))
 		</div>
 		<script type="text/javascript" src="assests/js/custom.js"></script>
 	</body>
-
-	</html>
+</html>
