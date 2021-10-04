@@ -13,16 +13,29 @@ if (isset($_POST['email']) && isset($_POST['password']))
         $emailpass = mysqli_fetch_assoc($query);
         $dbpass = $emailpass['password'];
         $_SESSION['id'] = $emailpass['id'];
-        //$_SESSION['USER_LOGIN']='yes';
         $_SESSION['fname'] = $emailpass['fname'];
 
         $passdecode = password_verify($password, $dbpass);
         if ($passdecode)
         {
-            $msg = '<div class="alert alert-succcess" role="alert">
-					Successfully Login!
-					</div>';
-            header("location:home.php");
+
+            if (isset($_POST['rememberme']))
+            {
+                setcookie('emailcookie', $email, time() + 86400);
+                setcookie('passwordcookie', $password, time() + 86400);
+                $msg = '<div class="alert alert-succcess" role="alert">
+						Successfully Login!
+						</div>';
+                header("location:home.php");
+            }
+            else
+            {
+                $msg = '<div class="alert alert-succcess" role="alert">
+						Successfully Login!
+						</div>';
+                header("location:home.php");
+            }
+
         }
         else
         {
@@ -76,9 +89,13 @@ if (isset($_POST['email']) && isset($_POST['password']))
 						<div class="panel-body">
 							<form role="form" method="post">
 								<div class="form-group">
-									<input type="email" name="email" id="email" class="form-control input-sm" placeholder="Email Address" value="<?php echo $email?>"> </div>
+									<input type="email" name="email" id="email" class="form-control input-sm" placeholder="Email Address" value="<?php echo $email?><?php  if(isset($_COOKIE['emailcookie'])){ 
+										echo $_COOKIE['emailcookie']; }?>"> </div>
 								<div class="form-group">
-									<input type="Password" name="password" id="password" class="form-control input-sm" placeholder="Password"> </div>
+									<input type="Password" name="password" id="password" class="form-control input-sm" placeholder="Password" value="<?php  if(isset($_COOKIE['passwordcookie'])){ 
+										echo $_COOKIE['passwordcookie']; }?>"> </div>
+									<div class="form-group">
+									<input type="checkbox" name="rememberme" >Remember me </div>
 								<input type="submit" value="Register" name="login" id="submit" class="btn btn-info btn-block">
 								<div>
 									<?php echo $msg ?>

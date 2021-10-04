@@ -206,5 +206,4 @@ jQuery(document).ready(function() {
         }
 
     });
-
 });
