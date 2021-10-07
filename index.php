@@ -70,6 +70,7 @@ if (isset($_POST['submit']))
 		<script type="text/javascript" src="assests/js/jquery-3.6.0.min.js"></script>
 		<link rel="stylesheet" type="text/css" href="assests/css/style.css">
 	</head>
+
 	<body>
 		<div class="container">
 			<div class="row centered-form">
@@ -134,5 +135,6 @@ if (isset($_POST['submit']))
 			</div>
 		</div>
 		<script type="text/javascript" src="assests/js/custom.js"></script>
+		
 	</body>
 </html>

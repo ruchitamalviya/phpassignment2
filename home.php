@@ -1,12 +1,11 @@
     <?php
       include 'conn.php';
       session_start();
-        if(isset($_SESSION['id']) && ($_SESSION['id']!='')){
-
-        } else{
+        if(!isset($_SESSION['id']) && ($_SESSION['id'] =='')){
           header('location:login.php');
           die();
-        }
+        } 
+
     ?>
 
 <!DOCTYPE html>
@@ -14,11 +13,21 @@
   <head>
     <meta charset="utf-8">
     <title>LoginSystem</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-   <script type="text/javascript" src="assests/js/jquery-3.6.0.min.js">
-   </script>
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      <!-- Latest compiled and minified CSS -->
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+      <!-- jQuery library -->
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+      <!-- Popper JS -->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+      <!-- Latest compiled JavaScript -->
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.5.2/bootbox.min.js" integrity="sha512-RdSPYh1WA6BF0RhpisYJVYkOyTzK4HwofJ3Q7ivt/jkpW6Vc8AurL1R+4AUcvn9IwEKAPm/fk7qFZW3OuiUDeg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+      <script type="text/javascript" src="assests/js/jquery-3.6.0.min.js">
+      </script>
   </head>
   <body>
     <div class="container-fluid mt-3 bg-success">
@@ -42,11 +51,11 @@
       <?php
       if(isset($_POST['submit'])) {
         $str = $_POST['str'];
-        $uid=$_SESSION['id'];
-        $date=date("d M Y");
-        $sql="SELECT * FROM `index_search` WHERE word='$str' and  uid='    $uid'";
-        $query=mysqli_query($conn,$sql);
-        $check=mysqli_num_rows($query);
+        $uid = $_SESSION['id'];
+        $date = date("d M Y");
+        $sql = "SELECT * FROM `index_search` WHERE word ='$str' and  uid ='    $uid'";
+        $query = mysqli_query($conn,$sql);
+        $check = mysqli_num_rows($query);
         if($check>0)
         {
 
@@ -79,25 +88,27 @@
       <table class="table table-striped">
         <thead>
           <tr>
-            <th scope="col">Sno</th>
-            <th scope="col">Word</th>
-            <th scope="col">Date</th>
-            <th scope="col">Action</th>
+            <th>Sno</th>
+            <th>Word</th>
+            <th>Date</th>
+           
           </tr>
         </thead>
         <tbody>
           <?php
-            $uid=$_SESSION['id'];
-            $sql="SELECT id, word, added FROM `index_search` WHERE uid='$uid'";
-            $query=mysqli_query($conn,$sql);
-            $id=1;
-            while ($row=mysqli_fetch_assoc($query)) {
+            $uid = $_SESSION['id'];
+            $sql = "SELECT id, word, added FROM `index_search` WHERE uid = '$uid'";
+            $query = mysqli_query($conn,$sql);
+            $id = 1;
+            while ($row = mysqli_fetch_assoc($query)) {
           ?>
           <tr>
             <td><?php echo $id++?></td>
-            <td><?php echo $row['word']?></td>
+            <td class="edit_input"><?php echo $row['word']?></td>
             <td><?php echo $row['added']?></td>
-            <td ><button class="btn btn-success btn_action" data-search-word = "<?php echo $row['word'];?>">Search</button></td>
+           <td><button class="btn btn-success btn_action" data-search-word = "<?php echo $row['word'];?>">Search</button></td>
+            <td><button class="btn btn-danger btn_del" data-id="<?php echo  $row['id'];?>">Delete</button></td>
+            <td><button class="btn btn-success btn_edit" data-edit-id="<?php echo $row['id'];?>">Edit</button></td>
           </tr>
         <?php } ?>
         </tbody>
