@@ -26,7 +26,6 @@ if (isset($_POST['email']) && isset($_POST['password'])){
 						</div>';
 
 		}else{
-			
 			$_SESSION['id'] = $emailpass['id'];
 			$_SESSION['fname'] = $emailpass['fname'];
 			if ($passdecode && ($userAttepmtCount <= 2 || $userAttepmtCount == 4 || $userAttepmtCount == 5)){
@@ -61,7 +60,6 @@ if (isset($_POST['email']) && isset($_POST['password'])){
 					$msg = '<div class="alert alert-danger" role="alert">
 					Captcha Not Verified!
 					</div>';
-					
 				}
 			}else if(!$passdecode && $userAttepmtCount==3){
 				$userIp = $bruteforce->getIpAddr();
@@ -88,8 +86,7 @@ if (isset($_POST['email']) && isset($_POST['password'])){
 							Password Do Not Match! '.$rem_attempt.' remaining attempts.
 							</div>';
 						
-						
-					}else{
+						}else{
 						$sql = "UPDATE `login_attempt` SET `recaptcha_status` = false WHERE `id` = '".$last_attempt_id."' ";
 						$query = mysqli_query($conn, $sql);
 						$message = "g-recaptcha not varified";
@@ -110,8 +107,6 @@ if (isset($_POST['email']) && isset($_POST['password'])){
 				$msg = '<div class="alert alert-danger" role="alert">
 				Password Do Not Match! '.$rem_attempt.' remaining attempts.
 				</div>';
-
-
 				$sql = "INSERT INTO `login_attempt` ( `user_id`,`ip_address`,`attempt_time`) VALUES ( '" . $emailpass['id'] . "','$userIp', ' $current_time')";
 				$query = mysqli_query($conn, $sql);
 			}	
@@ -151,7 +146,6 @@ if (isset($_POST['email']) && isset($_POST['password'])){
 						<div class="panel-heading">
 							<h3 class="panel-title">Login Form</h3>
 							<?php
-
 							if(isset($_SESSION['msg'])){
 							echo $_SESSION['msg'];
 							unset($_SESSION['msg']);
@@ -175,9 +169,7 @@ if (isset($_POST['email']) && isset($_POST['password'])){
 						            	?>
 						            	
 										   <div class="g-recaptcha" data-sitekey="6LcDesUcAAAAADqMHJ_lY_SQU4h83egtm_dV5Xff"></div>
-										  
-										
-						            	
+										  						            	
 						            	<?php
 						               
 						            }?>

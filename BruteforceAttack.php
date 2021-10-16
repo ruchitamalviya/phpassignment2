@@ -8,7 +8,7 @@ class BruteforceAttack
          return $this->conn;
         }
     }
-    function check_userAttempt($Ip){
+    public function check_userAttempt($Ip){
         $attemptcount = 0;
         $attempt_time = date( 'Y-m-d H:i:s', strtotime("- 24 hours"));
         $check_login_row = "SELECT * from login_attempt where ip_address='".$Ip."' AND attempt_time > '".$attempt_time."'";
@@ -19,7 +19,7 @@ class BruteforceAttack
         return $attemptcount;
     }	
 
-    function getIpAddr(){
+    public  function getIpAddr(){
         $myIp = getHostByName(getHostName());
         return $myIp;
     }
@@ -33,7 +33,7 @@ class BruteforceAttack
         }
         return  $last_attempt_time;
     }
-    //get user id using email address.
+   
     function get_user_id_by_email($email) {
         if (!$email) {
             return false;

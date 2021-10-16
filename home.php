@@ -56,12 +56,10 @@
         $sql = "SELECT * FROM `index_search` WHERE word ='$str' and  uid ='    $uid'";
         $query = mysqli_query($conn,$sql);
         $check = mysqli_num_rows($query);
-        if($check>0)
-        {
+        if($check>0){
 
         }else
         {
-
           $sql="INSERT INTO `index_search` ( `uid`, `word`,`added`) VALUES ( '$uid', '$str','$date')";
           mysqli_query($conn, $sql);        
         }
@@ -75,7 +73,6 @@
             echo "<li>The Index of '".$str[$i]."' ".$result. "<br></li>";
           } else 
           {
-
             echo "<li> '".$str[$i]."' is not alphabet  <br></li>";
           }
         }
