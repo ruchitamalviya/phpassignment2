@@ -1,12 +1,12 @@
-    <?php
-      include 'conn.php';
-      session_start();
-        if(!isset($_SESSION['id']) && ($_SESSION['id'] =='')){
-          header('location:login.php');
-          die();
-        } 
+<?php
+  include 'conn.php';
+  session_start();
+    if(!isset($_SESSION['id']) && ($_SESSION['id'] =='')){
+      header('location:login.php');
+      die();
+    } 
 
-    ?>
+?>
 
 <!DOCTYPE html>
 <html>

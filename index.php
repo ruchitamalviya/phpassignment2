@@ -1,4 +1,6 @@
-<?php include 'conn.php';
+<?php 
+
+include 'conn.php';
 session_start();
 $msg = "";
 if (isset($_POST['submit']))
